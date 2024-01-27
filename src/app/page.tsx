@@ -14,9 +14,7 @@ export default function Home() {
       <nav>
         <ul>
           <li>
-            <Button href={`/categories`}>
-              menu
-            </Button>
+            <Button href={`/categories`}>menu</Button>
           </li>
           <li>
             <Button>call waiter</Button>

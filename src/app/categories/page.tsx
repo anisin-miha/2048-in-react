@@ -21,9 +21,7 @@ export default function Categories() {
           </Link>
         ))}
       </ul>
-      <Button href="/" >
-        go back
-      </Button>
+      <Button href="/">go back</Button>
     </>
   );
 }

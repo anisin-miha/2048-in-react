@@ -1,4 +1,3 @@
-
 import { Button } from "../../components/Button";
 import { categories } from "../../data";
 import styles from "./page.module.css";
@@ -6,12 +5,15 @@ import styles from "./page.module.css";
 export function generateStaticParams() {
   return categories.map((cat) => ({
     slug: cat.link,
-    name: cat.name
-  }))
+    name: cat.name,
+  }));
 }
 
-export default function Menu({ params }: { params: { slug: string, name: string } }) {
-
+export default function Menu({
+  params,
+}: {
+  params: { slug: string; name: string };
+}) {
   return (
     <>
       <p className={styles.title}>Hot beverages</p>
@@ -20,9 +22,7 @@ export default function Menu({ params }: { params: { slug: string, name: string 
           <Item key={item} />
         ))}
       </ul>
-      <Button href="/categories">
-        go back
-      </Button>
+      <Button href="/categories">go back</Button>
     </>
   );
 }
