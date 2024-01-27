@@ -6,13 +6,15 @@ import { Button } from "./components/Button";
 export default function Home() {
   return (
     <div className={styles.wrapper}>
-      <select className="" name="lang" id="">
-        <option value="en">🇺🇸</option>
-        <option value="ru">🇷🇺</option>
-      </select>
       <Image src={logo} alt="logo" priority />
       <nav>
         <ul>
+          <li>
+            <select className={styles.select} name="lang" id="">
+              <option value="en">🇺🇸</option>
+              <option value="ru">🇷🇺</option>
+            </select>
+          </li>
           <li>
             <Button href={`/categories`}>menu</Button>
           </li>
