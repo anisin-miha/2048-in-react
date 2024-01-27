@@ -1,7 +1,18 @@
 import { Button } from "../components/Button";
-import { categories } from "../data";
+import { categories, fetchData } from "../data";
 import styles from "./page.module.css";
 import Link from "next/link";
+
+export function generateStaticParams() {
+  const data = fetchData();
+
+  // console.log(data);
+
+  return categories.map((cat) => ({
+    slug: cat.link,
+    name: cat.name,
+  }));
+}
 
 export default function Categories() {
   return (

@@ -4,9 +4,10 @@ import styles from "./styles.module.css";
 
 type Props = PropsWithChildren & {
   href?: string;
+  onClick?: any;
 };
 
-export const Button: React.FC<Props> = ({ href, children }) => {
+export const Button: React.FC<Props> = ({ href, onClick, children }) => {
   if (href) {
     return (
       <Link className={styles.button} href={href}>
@@ -14,5 +15,9 @@ export const Button: React.FC<Props> = ({ href, children }) => {
       </Link>
     );
   }
-  return <button className={styles.button}>{children}</button>;
+  return (
+    <button onClick={onClick} className={styles.button}>
+      {children}
+    </button>
+  );
 };

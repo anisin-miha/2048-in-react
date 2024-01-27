@@ -3,6 +3,12 @@ import styles from "./page.module.css";
 import logo from "./logo.png";
 import { Button } from "./components/Button";
 
+import dynamic from "next/dynamic";
+
+const DynamicYourComponent = dynamic(() => import("./components/CallWaiter"), {
+  ssr: false, // This ensures that the component is not included in SSR
+});
+
 export default function Home() {
   return (
     <div className={styles.wrapper}>
@@ -19,7 +25,7 @@ export default function Home() {
             <Button href={`/categories`}>menu</Button>
           </li>
           <li>
-            <Button>call waiter</Button>
+            <DynamicYourComponent />
           </li>
         </ul>
       </nav>

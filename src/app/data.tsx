@@ -52,3 +52,29 @@ export const categories = [
     link: "indian-breakfast",
   },
 ];
+
+const url =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRo_AhTfkPRxwK-HSRLfggXv5WEqQLydVoec9Vd4z4AuHxRR4UHnnecuB8PcyKEYp0iSnuSgaDvuY1c/pub?output=csv";
+
+fetch(url)
+  .then((response) => response.text())
+  .then((data) => {
+    // Обработка данных (например, преобразование CSV в объект JavaScript)
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Ошибка при загрузке данных:", error);
+  });
+
+export function fetchData() {
+  fetch(url)
+    .then((response) => response.text())
+    .then((data) => {
+      // Обработка данных (например, преобразование CSV в объект JavaScript)
+      console.log(data);
+      return data;
+    })
+    .catch((error) => {
+      console.error("Ошибка при загрузке данных:", error);
+    });
+}
