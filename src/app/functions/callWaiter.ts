@@ -1,5 +1,5 @@
-const botToken = "6656960670:AAH0LNLzkuCOYEs2powEHxTH0l0c158U0_c";
-const chatId = "197267909"; // me
+const botToken = process.env.TELEGRAM_BOT_TOKEN;
+// const chatId = "197267909"; // me
 const RuthraChatId = "6306657303";
 
 export function sendMessageToTelegram(message: string) {
