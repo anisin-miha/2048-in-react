@@ -25,7 +25,6 @@ jobs:
       - name: Use the secret
         run: echo ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
 
