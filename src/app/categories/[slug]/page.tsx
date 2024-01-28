@@ -2,12 +2,15 @@ import { Dish, csvToObject, url } from "@/src/app/functions/fetchMenu";
 import { Button } from "../../components/Button";
 import styles from "./page.module.css";
 import { transformString } from "../../functions/transformStringToUrl";
+import { fetchData } from "../../components/FireStoreData";
 
 export default async function Page({ params }: any) {
-  const data = await fetch(url).then((res) => res.text());
-  const result = await csvToObject(data);
+  // const data = await fetch(url).then((res) => res.text());
+  // const result = await csvToObject(data);
 
-  const item = result.find(
+  const menu = await fetchData();
+
+  const item = menu.find(
     (item) => transformString(item.name) === params.slug,
   );
 
@@ -31,8 +34,6 @@ export default async function Page({ params }: any) {
     return <li>error</li>;
   };
 
-  console.log(item?.categories);
-
   return (
     <>
       <p className={styles.title}>{item?.name}</p>
@@ -49,16 +50,35 @@ const Item: React.FC<{ dish: Dish }> = ({ dish }) => {
         <p className={styles["item-title"]}>{dish.Dish}</p>
         <p className={styles["item-desc"]}>{dish.Ingridients}</p>
       </div>
-      <div className={styles.price}>{dish.Price} ₹</div>
+      <div className={styles.price}>
+        {dish.Price ||
+          dish["Shot price"] ||
+          dish["Glass price"] ||
+          dish["Bottle price"] ||
+          dish["30ml Price"] ||
+          dish["30ml Price"] ||
+          dish["180ml Price"]}{" "}
+        ₹
+      </div>
     </li>
   );
 };
 
-export async function generateStaticParams() {
-  const data = await fetch(url).then((res) => res.text());
-  const result = await csvToObject(data).map((item) => ({
-    slug: transformString(item.name),
-  }));
+// export async function generateStaticParams() {
+//   const data = await fetch(url).then((res) => res.text());
+//   const result = await csvToObject(data).map((item) => ({
+//     slug: transformString(item.name),
+//   }));
 
-  return result;
+//   return result;
+// }
+
+
+export async function generateStaticParams() {
+
+  const menu = await fetchData();
+  // const data = await fetch(url).then((res) => res.text());
+  // const result = await csvToObject(data).map((item) => ({ slug: item.name }));
+
+  return menu.map((item) => ({ slug: transformString(item.name) }));
 }
