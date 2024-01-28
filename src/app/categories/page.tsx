@@ -42,6 +42,7 @@ export default async function Page() {
 
 export async function generateStaticParams() {
   const menu = await fetchData();
+
   // const data = await fetch(url).then((res) => res.text());
   // const result = await csvToObject(data).map((item) => ({ slug: item.name }));
 
