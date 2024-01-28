@@ -39,3 +39,11 @@
   font-weight: 400;
   line-height: 12px; /* 120% */
 }
+
+.category {
+  margin-bottom: 20px;
+}
+
+.categoryHeader {
+  margin-bottom: 10px;
+}
