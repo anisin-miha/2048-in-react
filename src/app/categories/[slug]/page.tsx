@@ -10,8 +10,8 @@ export default async function Page({ params }: any) {
 
   const menu = await fetchData();
 
-  const item = menu.find(
-    (item) => transformString(item.name) === params.slug,
+  const item:any = menu.find(
+    (item: any) => transformString(item.name) === params.slug,
   );
 
   const renderMenu = (dishes: Record<string, Dish[]> | undefined) => {
@@ -80,5 +80,5 @@ export async function generateStaticParams() {
   // const data = await fetch(url).then((res) => res.text());
   // const result = await csvToObject(data).map((item) => ({ slug: item.name }));
 
-  return menu.map((item) => ({ slug: transformString(item.name) }));
+  return menu.map((item: any) => ({ slug: transformString(item.name) }));
 }

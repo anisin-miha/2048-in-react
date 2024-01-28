@@ -8,7 +8,6 @@ export const fetchData = async () => {
   const snapshot = await getDocs(collectionRef);
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,
-    // name: doc.name,
     ...doc.data(),
   }));
 
