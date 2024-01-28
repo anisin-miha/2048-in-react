@@ -23,7 +23,7 @@ export default async function Page() {
     <Suspense fallback="loading">
       <p className={styles.title}>Menu</p>
       <ul className={styles.container}>
-        {menu.map((item) => (
+        {menu.map((item:any) => (
           <Link
             key={transformString(item.name)}
             href={`/categories/${transformString(item.name)}`}
@@ -46,5 +46,5 @@ export async function generateStaticParams() {
   // const data = await fetch(url).then((res) => res.text());
   // const result = await csvToObject(data).map((item) => ({ slug: item.name }));
 
-  return menu.map((item) => ({ slug: transformString(item.name) }));
+  return menu.map((item: any) => ({ slug: transformString(item.name) }));
 }
