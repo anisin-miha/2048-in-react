@@ -10,7 +10,7 @@ export default async function Page({ params }: any) {
 
   const menu = await fetchData();
 
-  const item:any = menu.find(
+  const item: any = menu.find(
     (item: any) => transformString(item.name) === params.slug,
   );
 
@@ -73,9 +73,7 @@ const Item: React.FC<{ dish: Dish }> = ({ dish }) => {
 //   return result;
 // }
 
-
 export async function generateStaticParams() {
-
   const menu = await fetchData();
   // const data = await fetch(url).then((res) => res.text());
   // const result = await csvToObject(data).map((item) => ({ slug: item.name }));

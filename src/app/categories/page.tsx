@@ -1,10 +1,13 @@
 import { Button } from "../components/Button";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { csvToObject, url } from "../functions/fetchMenu";
+// import { csvToObject, url } from "../functions/fetchMenu";
 import { Suspense } from "react";
 import { transformString } from "../functions/transformStringToUrl";
-import { addOrUpdateItemToCollection, fetchData } from "../components/FireStoreData";
+import {
+  addOrUpdateItemToCollection,
+  fetchData,
+} from "../components/FireStoreData";
 
 export default async function Page() {
   // const data = await fetch(url).then((res) => res.text());
@@ -16,14 +19,11 @@ export default async function Page() {
 
   const menu = await fetchData();
 
-
-
-
   return (
     <Suspense fallback="loading">
       <p className={styles.title}>Menu</p>
       <ul className={styles.container}>
-        {menu.map((item:any) => (
+        {menu.map((item: any) => (
           <Link
             key={transformString(item.name)}
             href={`/categories/${transformString(item.name)}`}
@@ -41,7 +41,6 @@ export default async function Page() {
 }
 
 export async function generateStaticParams() {
-
   const menu = await fetchData();
   // const data = await fetch(url).then((res) => res.text());
   // const result = await csvToObject(data).map((item) => ({ slug: item.name }));

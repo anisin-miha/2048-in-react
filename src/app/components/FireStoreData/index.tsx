@@ -2,7 +2,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../firestore";
 import { addDoc } from "firebase/firestore";
 
-
 export const fetchData = async () => {
   const collectionRef = collection(firestore, "menu"); // Замените 'your-collection' на имя вашей коллекции Firestore
   const snapshot = await getDocs(collectionRef);
@@ -11,9 +10,9 @@ export const fetchData = async () => {
     ...doc.data(),
   }));
 
-// console.log("Fetched data:", data);
+  // console.log("Fetched data:", data);
 
-return data;
+  return data;
 };
 
 // Функция для добавления элемента в коллекцию

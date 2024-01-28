@@ -68,7 +68,5 @@ export function csvToObject(csv: string): Section[] {
     }
   }
 
-
-
   return sections;
 }
