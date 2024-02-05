@@ -2,7 +2,7 @@ import { Button } from "../components/Button";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { Suspense } from "react";
-import { fetchMenu, fetchSections } from "../components/FireStoreData";
+import { fetchSections } from "../components/FireStoreData";
 // import { addOrUpdateItemToCollection } from "../functions/addOrUpdateItemToCollection";
 // import { deleteAllDocumentsInCollection } from "../functions/deleteAllDocumentsInCollection";
 // import { updateCategoriesAndSectionsFromMenu } from "../functions/updateCategoriesAndSectionsFromMenu";

@@ -11,13 +11,12 @@ export const fetchMenu = async () => {
 
   return data;
 };
-
 export const fetchSections = async () => {
-  const collectionRef = collection(firestore, "sections"); // Замените 'your-collection' на имя вашей коллекции Firestore
+  const collectionRef = collection(firestore, "sections");
   const snapshot = await getDocs(collectionRef);
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,
-    ...doc.data(),
+    name: doc.data().name,
   }));
 
   return data;

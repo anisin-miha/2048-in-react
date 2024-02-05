@@ -5,7 +5,6 @@ import { Button } from "./components/Button";
 import dynamic from "next/dynamic";
 import { useLanguage } from "./components/LanguageProvider";
 
-
 const DynamicCallWaiter = dynamic(() => import("./components/CallWaiter"), {
   ssr: false, // This ensures that the component is not included in SSR
 });
