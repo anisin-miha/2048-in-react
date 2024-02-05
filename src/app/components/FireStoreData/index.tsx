@@ -1,8 +1,7 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../../firestore";
-import { addDoc } from "firebase/firestore";
 
-export const fetchData = async () => {
+export const fetchMenu = async () => {
   const collectionRef = collection(firestore, "menu"); // Замените 'your-collection' на имя вашей коллекции Firestore
   const snapshot = await getDocs(collectionRef);
   const data = snapshot.docs.map((doc) => ({
@@ -10,52 +9,46 @@ export const fetchData = async () => {
     ...doc.data(),
   }));
 
-  // console.log("Fetched data:", data);
+  return data;
+};
+
+export const fetchSections = async () => {
+  const collectionRef = collection(firestore, "sections"); // Замените 'your-collection' на имя вашей коллекции Firestore
+  const snapshot = await getDocs(collectionRef);
+  const data = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
 
   return data;
 };
 
-// Функция для добавления элемента в коллекцию
-async function addItemToCollection() {
-  try {
-    // Указываем ссылку на коллекцию, в которую вы хотите добавить элемент
-    const collectionRef = collection(firestore, "menu"); // Замените 'your-collection' на имя вашей коллекции
+export const fetchPage = async (id: string) => {
+  const categoriesCollectionRef = collection(firestore, "menu");
+  const categoriesQuery = query(
+    categoriesCollectionRef,
+    where("sectionId", "==", id),
+  );
+  const categoriesSnapshot = await getDocs(categoriesQuery);
 
-    // Данные, которые вы хотите добавить
-    const newItemData = {
-      // ... данные вашего элемента ...
-    };
+  const data = categoriesSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
 
-    // Добавление элемента в коллекцию
-    const docRef = await addDoc(collectionRef, newItemData);
+  return data;
+};
 
-    console.log("Item added with ID: ", docRef.id);
-  } catch (error) {
-    console.error("Error adding item: ", error);
-  }
-}
-
-import { doc, setDoc } from "firebase/firestore";
-
-export async function addOrUpdateItemToCollection(item: any) {
-  const collectionRef = collection(firestore, "menu"); // Замените 'your-collection' на имя вашей коллекции
-  const itemDocRef = doc(collectionRef); // Замените 'your-document-id' на идентификатор документа или оставьте пустым для создания нового документа
-
-  try {
-    // Используйте setDoc для установки данных в документ
-    await setDoc(itemDocRef, item);
-
-    console.log("Item added or updated successfully");
-  } catch (error) {
-    console.error("Error adding or updating item: ", error);
-  }
-}
-
-// // Пример данных для элемента
-// const singleItem = {
-//   name: "Single Item",
-//   description: "Description of the item",
-// };
-
-// // Вызовите функцию для добавления или обновления элемента в коллекции
-// addOrUpdateItemToCollection(singleItem);
+export const fetchCategories = async (id: string) => {
+  const categoriesCollectionRef = collection(firestore, "categories");
+  const categoriesQuery = query(
+    categoriesCollectionRef,
+    where("sectionId", "==", id),
+  );
+  const categoriesSnapshot = await getDocs(categoriesQuery);
+  const categoriesData = categoriesSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    name: doc.data().name,
+  }));
+  return categoriesData;
+};

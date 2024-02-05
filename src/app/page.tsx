@@ -1,31 +1,44 @@
-import Image from "next/image";
+"use client";
+
 import styles from "./page.module.css";
-import logo from "./logo.png";
 import { Button } from "./components/Button";
-
 import dynamic from "next/dynamic";
+import { useLanguage } from "./components/LanguageProvider";
 
-const DynamicYourComponent = dynamic(() => import("./components/CallWaiter"), {
+
+const DynamicCallWaiter = dynamic(() => import("./components/CallWaiter"), {
+  ssr: false, // This ensures that the component is not included in SSR
+});
+
+const DynamicLogoThemed = dynamic(() => import("./components/LogoThemed"), {
   ssr: false, // This ensures that the component is not included in SSR
 });
 
 export default function Home() {
+  const { language, changeLanguage } = useLanguage();
+
   return (
     <div className={styles.wrapper}>
-      <Image src={logo} alt="logo" priority />
+      <DynamicLogoThemed />
+
       <nav>
         <ul>
           <li>
-            <select className={styles.select} name="lang" id="">
+            <select
+              className={styles.select}
+              name="lang"
+              value={language}
+              onChange={(e) => changeLanguage(e.target.value)}
+            >
               <option value="en">🇺🇸</option>
               <option value="ru">🇷🇺</option>
             </select>
           </li>
           <li>
-            <Button href={`/categories`}>menu</Button>
+            <Button href={`/sections`}>menu</Button>
           </li>
           <li>
-            <DynamicYourComponent />
+            <DynamicCallWaiter />
           </li>
         </ul>
       </nav>

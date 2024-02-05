@@ -2,11 +2,13 @@ export const url =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vRo_AhTfkPRxwK-HSRLfggXv5WEqQLydVoec9Vd4z4AuHxRR4UHnnecuB8PcyKEYp0iSnuSgaDvuY1c/pub?output=csv";
 
 export interface Dish {
-  Section: string;
-  Category: string;
-  Dish: string;
-  Ingridients: string;
-  Price: string;
+  section: string;
+  category: string;
+  dish: string;
+  dish_ru: string;
+  ingredients: string;
+  ingredients_ru: string;
+  price: string;
   "Bottle price": string;
   "Glass price": string;
   "30ml Price": string;
@@ -19,44 +21,37 @@ export interface Section {
   name: string;
   categories: Record<string, Dish[]>;
 }
+import Papa from "papaparse";
 
 export function csvToObject(csv: string): Section[] {
-  const lines: string[] = csv.split("\n");
-  const headers: string[] = lines[0].split(",");
+  // Используем библиотеку papaparse для парсинга CSV
+  const parsedCsv = Papa.parse(csv, { header: true });
 
   const sections: Section[] = [];
   let currentSection: Section | null = null;
   let currentCategory: string | null = null;
 
-  for (let i = 1; i < lines.length; i++) {
-    const currentLine: string[] = lines[i].split(",");
-
-    const obj: Dish = {} as Dish;
-    for (let j = 0; j < headers.length; j++) {
-      obj[headers[j].trim() as keyof Dish] = (currentLine[j].trim() ||
-        null) as any;
-    }
-
-    if (obj.Section) {
+  parsedCsv.data.forEach((obj: any) => {
+    if (obj.section) {
       currentCategory = null;
 
       const existingSection = sections.find(
-        (section) => section.name === obj.Section,
+        (section) => section.name === obj.section,
       );
 
       if (existingSection) {
         currentSection = existingSection;
       } else {
         currentSection = {
-          name: obj.Section,
+          name: obj.section,
           categories: {},
         };
         sections.push(currentSection);
       }
     }
 
-    if (obj.Category) {
-      currentCategory = obj.Category;
+    if (obj.category) {
+      currentCategory = obj.category;
 
       if (!currentSection!.categories[currentCategory!]) {
         currentSection!.categories[currentCategory!] = [];
@@ -66,7 +61,7 @@ export function csvToObject(csv: string): Section[] {
     if (currentSection && currentCategory) {
       currentSection.categories[currentCategory].push(obj);
     }
-  }
+  });
 
   return sections;
 }

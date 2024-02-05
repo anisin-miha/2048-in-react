@@ -27,3 +27,10 @@ body {
   max-width: 595px;
   margin: 0 auto;
 }
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+}
