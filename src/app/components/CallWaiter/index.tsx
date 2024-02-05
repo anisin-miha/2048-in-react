@@ -5,6 +5,7 @@ import { Button } from "../Button";
 
 const RuthraChatId = "6306657303";
 const DocChatId = "1251976905";
+const RoshanChatId = "6954265434";
 const MychatId = "197267909";
 
 export default function CallWaiter() {
@@ -17,6 +18,7 @@ export default function CallWaiter() {
   const handleClick = () => {
     sendMessageToTelegram(text, RuthraChatId);
     sendMessageToTelegram(text, DocChatId);
+    sendMessageToTelegram(text, RoshanChatId);
     sendMessageToTelegram(text, MychatId);
   };
 
