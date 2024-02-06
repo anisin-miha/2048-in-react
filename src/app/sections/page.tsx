@@ -33,5 +33,5 @@ export default async function Page() {
 export async function generateStaticParams() {
   const sections = await fetchSections();
 
-  return sections.map((item) => ({ slug: item.id }));
+  return sections.map((item) => ({ slug: item.id, name: item.name }));
 }

@@ -45,6 +45,7 @@ export const fetchCategories = async (id: string) => {
     where("sectionId", "==", id),
   );
   const categoriesSnapshot = await getDocs(categoriesQuery);
+
   const categoriesData = categoriesSnapshot.docs.map((doc) => ({
     id: doc.id,
     name: doc.data().name,
