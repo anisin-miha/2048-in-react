@@ -6,91 +6,22 @@
   margin-bottom: 32px;
 }
 
-.container {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid a {
+  margin-top: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-}
 
-.card {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s;
-  color: #fff;
-  text-decoration: none;
-}
-
-.card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
-}
-
-.card:active {
-  box-shadow: none;
-  transform: scale(0.95);
-}
-
-.card-content {
-  padding: 15px;
-}
-
-.card-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 8px;
   text-transform: uppercase;
-}
-
-.card-description {
-  font-size: 14px;
-  color: #555;
-}
-
-/* Media query для светлой темы */
-@media (prefers-color-scheme: light) {
-  /* Стили для светлой темы */
-  .title {
-    color: #000; /* Цвет текста */
-  }
-
-  .container {
-    /* Ваши основные стили для светлой темы */
-  }
-
-  .card {
-    /* Ваши основные стили для светлой темы */
-    border: 1px solid #ddd;
-    color: #000;
-  }
-
-  .card:hover {
-    /* Стили при наведении для светлой темы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transform: scale(1.05);
-  }
-
-  .card:active {
-    /* Стили при активации для светлой темы */
-    box-shadow: none;
-    transform: scale(0.95);
-  }
-
-  .card-content {
-    /* Ваши основные стили для светлой темы */
-    padding: 15px;
-  }
-
-  .card-title {
-    /* Ваши основные стили для светлой темы */
-    font-weight: bold;
-  }
-
-  .card-description {
-    /* Ваши основные стили для светлой темы */
-    color: #555;
-  }
 }

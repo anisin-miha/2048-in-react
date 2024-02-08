@@ -1,19 +1,16 @@
-import { Button } from "../../components/Button";
+import { Button } from "../../../components/Button";
 import styles from "./page.module.css";
-import { ListItem } from "../../components/ListItem";
+import { ListItem } from "../../../components/ListItem";
 import {
   fetchCategories,
   fetchPage,
   fetchSections,
-} from "../../components/FireStoreData";
+} from "../../../components/FireStoreData";
 
 export default async function Page({ params }: any) {
   const menu: any[] = await fetchPage(params.slug);
-
   const sections = await fetchSections();
-
   const section = sections.find((item) => item.id === params.slug);
-
   const categories = await fetchCategories(params.slug);
 
   return (
@@ -39,7 +36,7 @@ export default async function Page({ params }: any) {
           </li>
         }
       </ul>
-      <Button href="/sections">go back</Button>
+      <Button href={`/sections/${section?.type}`}>go back</Button>
     </>
   );
 }
@@ -47,5 +44,7 @@ export default async function Page({ params }: any) {
 export async function generateStaticParams() {
   const sections = await fetchSections();
 
-  return sections.map((item) => ({ slug: item.id }));
+  console.log(sections.map((item) => ({ slug: `${item.type}/${item.id}` })));
+
+  return sections.map((item) => ({ type: item.type, slug: item.id }));
 }

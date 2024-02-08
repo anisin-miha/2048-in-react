@@ -19,6 +19,8 @@ export const fetchSections = async () => {
     id: doc.id,
     name: doc.data().name,
     categories: doc.data().categories,
+    type: doc.data().type,
+    hidden: doc.data().hidden,
   }));
 
   return data;
