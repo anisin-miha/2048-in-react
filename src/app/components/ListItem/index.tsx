@@ -7,14 +7,15 @@ import styles from "./style.module.css";
 
 export const ListItem: React.FC<{ dish: Dish }> = ({ dish }) => {
   const { language } = useLanguage();
+
   return (
     <li className={styles.item}>
       <div>
-        <p className={styles["item-title"]}>
+        <p className={styles.title}>
           {language === "en" ? dish.dish : dish.dish_ru}
         </p>
-        <p className={styles["item-desc"]}>
-          {language === "en" ? dish.ingredients : dish.ingredients_ru}
+        <p className={styles.desc}>
+          {language === "en" ? dish.ingridients : dish.ingridients_ru}
         </p>
       </div>
       <div className={styles.price}>

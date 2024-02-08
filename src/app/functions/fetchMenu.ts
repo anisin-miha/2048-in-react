@@ -6,8 +6,8 @@ export interface Dish {
   category: string;
   dish: string;
   dish_ru: string;
-  ingredients: string;
-  ingredients_ru: string;
+  ingridients: string;
+  ingridients_ru: string;
   price: string;
   "Bottle price": string;
   "Glass price": string;

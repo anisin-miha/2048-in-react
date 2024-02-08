@@ -10,7 +10,6 @@ export default async function Page({ params }: any) {
   return (
     <Suspense fallback="loading">
       <p className={styles.title}>Menu</p>
-      <p> {params.menu}</p>
       <ul className={styles.container}>
         {sections
           .filter(({ type }) => type === params.type)

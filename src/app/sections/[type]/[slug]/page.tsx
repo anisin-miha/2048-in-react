@@ -43,8 +43,5 @@ export default async function Page({ params }: any) {
 
 export async function generateStaticParams() {
   const sections = await fetchSections();
-
-  console.log(sections.map((item) => ({ slug: `${item.type}/${item.id}` })));
-
   return sections.map((item) => ({ type: item.type, slug: item.id }));
 }

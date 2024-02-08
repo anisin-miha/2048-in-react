@@ -6,6 +6,12 @@
   margin-bottom: 32px;
 }
 
+@media (prefers-color-scheme: light) {
+  .title {
+    color: #000;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
