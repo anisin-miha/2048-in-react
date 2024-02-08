@@ -18,7 +18,7 @@ export async function updateCategoriesAndSectionsFromMenu() {
 
     menuSnapshot.forEach((doc) => {
       const data = doc.data();
-      if (data && data.section) {
+      if (data?.section) {
         uniqueSections.add(data.section);
 
         if (data.category) {

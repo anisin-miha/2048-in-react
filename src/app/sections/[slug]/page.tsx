@@ -10,13 +10,11 @@ import {
 export default async function Page({ params }: any) {
   const menu: any[] = await fetchPage(params.slug);
 
-  console.log(menu);
-
-  const categories = await fetchCategories(params.slug);
-
   const sections = await fetchSections();
 
   const section = sections.find((item) => item.id === params.slug);
+
+  const categories = await fetchCategories(params.slug);
 
   return (
     <>
@@ -32,8 +30,8 @@ export default async function Page({ params }: any) {
                 <ul>
                   {menu
                     .filter((item) => item.categoryId === category.id)
-                    .map((item, index) => (
-                      <ListItem key={index} dish={item} />
+                    .map((item) => (
+                      <ListItem key={item.id} dish={item} />
                     ))}
                 </ul>
               </div>

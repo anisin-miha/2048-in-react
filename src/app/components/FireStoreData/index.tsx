@@ -2,7 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../../firestore";
 
 export const fetchMenu = async () => {
-  const collectionRef = collection(firestore, "menu"); // Замените 'your-collection' на имя вашей коллекции Firestore
+  const collectionRef = collection(firestore, "menu");
   const snapshot = await getDocs(collectionRef);
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,
@@ -11,12 +11,14 @@ export const fetchMenu = async () => {
 
   return data;
 };
+
 export const fetchSections = async () => {
   const collectionRef = collection(firestore, "sections");
   const snapshot = await getDocs(collectionRef);
   const data = snapshot.docs.map((doc) => ({
     id: doc.id,
     name: doc.data().name,
+    categories: doc.data().categories,
   }));
 
   return data;
@@ -50,5 +52,6 @@ export const fetchCategories = async (id: string) => {
     id: doc.id,
     name: doc.data().name,
   }));
+
   return categoriesData;
 };
