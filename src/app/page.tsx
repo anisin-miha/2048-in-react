@@ -35,6 +35,7 @@ export default function Home() {
           </li>
           <li>
             <Button href={`/sections`}>menu</Button>
+            {/* <Button href={`/delivery`}>delivery</Button> */}
           </li>
           <li>
             <DynamicCallWaiter />
